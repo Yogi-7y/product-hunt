@@ -11,4 +11,6 @@ Uri _uri = Uri(
   path: _kApiVersion,
 );
 
+final kBasrUrl = _uri.toString();
+
 const kTodaysPosts = '/posts';

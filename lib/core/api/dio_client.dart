@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:product_hunt/core/api/endpoints.dart';
 import 'package:product_hunt/core/resources/strings.dart';
 import 'package:product_hunt/core/utils/logger.dart';
 
@@ -20,7 +21,7 @@ class DioClient {
   void _initialize() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: '',
+        baseUrl: kBasrUrl,
         headers: headers,
         contentType: Headers.formUrlEncodedContentType,
       ),
