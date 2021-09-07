@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_hunt/screens/home/home_screen.dart';
 import 'package:product_hunt/screens/splash/splash_screen.dart';
 
 class RouteGenerator {
@@ -13,6 +14,11 @@ class RouteGenerator {
       case SplashScreen.id:
         return MaterialPageRoute<SplashScreen>(
           builder: (context) => const SplashScreen(),
+        );
+
+      case HomeScreen.id:
+        return MaterialPageRoute<HomeScreen>(
+          builder: (context) => const HomeScreen(),
         );
 
       default:

@@ -1,30 +1,32 @@
 import 'package:flutter/cupertino.dart';
 
 @immutable
-class ApiResponse<T> {
+class CustomResponse<T> {
   final T? data;
-  final ApiResponseStatus? status;
+  final CustomResponseStatus? status;
   final String? message;
 
-  const ApiResponse._({
+  const CustomResponse._({
     this.data,
     this.status,
     this.message,
   });
 
-  factory ApiResponse.loading() =>
-      ApiResponse<T>._(status: ApiResponseStatus.loading);
+  factory CustomResponse.loading() =>
+      CustomResponse<T>._(status: CustomResponseStatus.loading);
 
-  factory ApiResponse.success({String? message, T? data}) => ApiResponse<T>._(
-      message: message, status: ApiResponseStatus.success, data: data);
+  factory CustomResponse.success({String? message, T? data}) =>
+      CustomResponse<T>._(
+          message: message, status: CustomResponseStatus.success, data: data);
 
-  factory ApiResponse.error(String message) =>
-      ApiResponse._(message: message, status: ApiResponseStatus.error);
+  factory CustomResponse.error(String message) =>
+      CustomResponse._(message: message, status: CustomResponseStatus.error);
 
-  factory ApiResponse.fromError(Map<String, dynamic> error) => ApiResponse._(
+  factory CustomResponse.fromError(Map<String, dynamic> error) =>
+      CustomResponse._(
         message: error['message'] as String,
-        status: ApiResponseStatus.error,
+        status: CustomResponseStatus.error,
       );
 }
 
-enum ApiResponseStatus { loading, success, error }
+enum CustomResponseStatus { loading, success, error }

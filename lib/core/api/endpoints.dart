@@ -13,4 +13,4 @@ Uri _uri = Uri(
 
 final kBasrUrl = _uri.toString();
 
-const kTodaysPosts = '/posts';
+const kTodaysPostsEndpoint = '/posts';

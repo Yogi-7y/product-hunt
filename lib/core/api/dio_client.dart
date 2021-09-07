@@ -32,25 +32,25 @@ class DioClient {
 
   void refresh() => _initialize();
 
-  ApiResponse<T> handleExceptions<T>(Object exception, String className) {
+  CustomResponse<T> handleExceptions<T>(Object exception, String className) {
     final log = getLogger(className);
     log.e(exception);
 
     if (exception is DioError) {
       switch (exception.type) {
         case DioErrorType.response:
-          return ApiResponse.error(
+          return CustomResponse.error(
               exception.response?.data['message'] as String);
 
         case DioErrorType.other:
           if (exception.error is SocketException)
-            return ApiResponse.error(kPoorConnectivityMessage);
+            return CustomResponse.error(kPoorConnectivityMessage);
 
           break;
         default:
       }
     }
 
-    return ApiResponse.error(kSomethingWentWrongMessage);
+    return CustomResponse.error(kSomethingWentWrongMessage);
   }
 }
