@@ -1,0 +1,20 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  language:
+    strict-inference: true
+    strict-raw-types: true
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+  errors:
+    avoid_web_libraries_in_flutter: error
+
+linter:
+  rules:
+    sort_pub_dependencies: false
+    use_setters_to_change_properties: false
+    curly_braces_in_flow_control_structures: false
+    avoid_print: false
+    directives_ordering: false
+    prefer_if_elements_to_conditional_expressions: false
