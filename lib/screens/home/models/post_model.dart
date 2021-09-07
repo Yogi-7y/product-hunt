@@ -97,32 +97,61 @@ class PostModel {
         userModel: userModel ?? this.userModel,
       );
 
+  Map<String, dynamic> toMap() => <String, dynamic>{
+        'id': id,
+        'comments_count': commentsCount,
+        'name': name,
+        'product_state': productState,
+        'redirect_url': redirectUrl,
+        'tagline': tagline,
+        'slug': slug,
+        'votes_count': votesCount,
+        'category_id': categoryId,
+        'created_at': createdAt.toString(),
+        'discussion_url': discussionUrl,
+        'exclusive': exclusive,
+        'featured': featured,
+        'ios_featured_at': iosFeaturedAt,
+        'maker_inside': makerInside,
+        'thumbnail': thumbnail.toMap(),
+        'user': userModel.toMap(),
+        'screenshot_url': screenshotUrl?.toMap() ?? <String, dynamic>{},
+        'makers': makers.map((e) => e.toMap()).toList(),
+        'topics': topics.map((e) => e.toMap()).toList(),
+      };
+
   factory PostModel.fromMap(Map<String, dynamic> map) {
+    final _categoryId = getValueOrNull<int>(map['category_id']);
+    final _exclusive = getValueOrNull<bool>(map['exclusive']);
+    final _featured = getValueOrNull<bool>(map['featured']);
+    final _iosFeaturedAt = getValueOrNull<bool>(map['ios_featured_at']);
+    final _makerInside = getValueOrNull<bool>(map['maker_inside']);
+
     return PostModel(
       id: map['id'] as int,
       commentsCount: map['comments_count'] as int,
       name: map['name'] as String,
       productState: map['product_state'] as String,
-      redirectUrl: map['redirectUrl'] as String,
+      redirectUrl: map['redirect_url'] as String,
       tagline: map['tagline'] as String,
       slug: map['slug'] as String,
       votesCount: map['votes_count'] as int,
-      categoryId: map['categoryId'] as int,
+      categoryId: _categoryId,
       createdAt: DateTime.parse(map['created_at'] as String),
-      discussionUrl: map['discussionUrl'] as String,
-      exclusive: map['exclusive'] as bool,
-      featured: map['featured'] as bool,
-      iosFeaturedAt: map['iosFeaturedAt'] as bool,
-      makerInside: map['makerInside'] as bool,
+      discussionUrl: map['discussion_url'] as String,
+      exclusive: _exclusive,
+      featured: _featured,
+      iosFeaturedAt: _iosFeaturedAt,
+      makerInside: _makerInside,
       thumbnail: Thumbnail.fromMap(map['thumbnail'] as Map<String, dynamic>),
-      userModel: UserModel.fromMap(map['userModel'] as Map<String, dynamic>),
+      userModel: UserModel.fromMap(map['user'] as Map<String, dynamic>),
       screenshotUrl:
-          Screenshot.fromMap(map['screenshotUrl'] as Map<String, dynamic>),
-      makers: List<Map<String, dynamic>>.from(map['tags'] as Iterable)
-          .map((tag) => UserModel.fromMap(tag))
+          Screenshot.fromMap(map['screenshot_url'] as Map<String, dynamic>),
+      makers: List<Map<String, dynamic>>.from(map['makers'] as Iterable)
+          .map((maker) => UserModel.fromMap(maker))
           .toList(),
-      topics: List<Map<String, dynamic>>.from(map['tags'] as Iterable)
-          .map((tag) => Topic.fromMap(tag))
+      topics: List<Map<String, dynamic>>.from(map['topics'] as Iterable)
+          .map((topics) => Topic.fromMap(topics))
           .toList(),
     );
   }
@@ -182,4 +211,9 @@ class PostModel {
         topics.hashCode ^
         userModel.hashCode;
   }
+}
+
+T? getValueOrNull<T>(Object? data) {
+  if (data != null) return data as T;
+  return null;
 }

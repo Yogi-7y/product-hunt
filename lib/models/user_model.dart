@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:product_hunt/screens/home/models/post_model.dart';
+import 'package:product_hunt/service/network_connectivity.dart';
 
 @immutable
 class UserModel {
@@ -8,22 +10,22 @@ class UserModel {
   final DateTime createdAt;
   final String name;
   final String username;
-  final String twitterUsername;
-  final String headline;
-  final String websiteUrl;
-  final String profileUrl;
-  final String imageUrl;
+  final String? twitterUsername;
+  final String? headline;
+  final String? websiteUrl;
+  final String? profileUrl;
+  final String? imageUrl;
 
   const UserModel({
     required this.id,
     required this.createdAt,
     required this.name,
-    required this.twitterUsername,
     required this.username,
-    required this.headline,
-    required this.websiteUrl,
-    required this.profileUrl,
-    required this.imageUrl,
+    this.twitterUsername,
+    this.headline,
+    this.websiteUrl,
+    this.profileUrl,
+    this.imageUrl,
   });
 
   UserModel copyWith({
@@ -52,27 +54,27 @@ class UserModel {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         'id': id,
-        'createdAt': createdAt.millisecondsSinceEpoch,
+        'created_at': createdAt.millisecondsSinceEpoch,
         'name': name,
         'username': username,
-        'twitterUsername': twitterUsername,
+        'twitter_username': twitterUsername,
         'headline': headline,
-        'websiteUrl': websiteUrl,
-        'profileUrl': profileUrl,
-        'imageUrl': imageUrl,
+        'website_url': websiteUrl,
+        'profile_url': profileUrl,
+        'image_url': {'original': imageUrl},
       };
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'] as int,
-      createdAt: DateTime.parse(map['created_at'] as String),
+      createdAt: parseDateTime(map['created_at'] as Object),
       name: map['name'] as String,
       username: map['username'] as String,
-      twitterUsername: map['twitter_username'] as String,
-      headline: map['headline'] as String,
-      websiteUrl: map['website_url'] as String,
-      profileUrl: map['profile_url'] as String,
-      imageUrl: map['image_url']['original'] as String,
+      twitterUsername: getValueOrNull<String>(map['twitter_username']),
+      headline: getValueOrNull<String>(map['headline']),
+      websiteUrl: getValueOrNull<String>(map['website_url']),
+      profileUrl: getValueOrNull<String>(map['profile_url']),
+      imageUrl: getValueOrNull<String>(map['image_url']['original']),
     );
   }
 
@@ -112,4 +114,11 @@ class UserModel {
         profileUrl.hashCode ^
         imageUrl.hashCode;
   }
+}
+
+DateTime parseDateTime(Object value) {
+  if (value is num) {
+    return DateTime.fromMillisecondsSinceEpoch(value.toInt());
+  }
+  return DateTime.parse(value as String);
 }

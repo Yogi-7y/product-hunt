@@ -14,3 +14,4 @@ Uri _uri = Uri(
 final kBasrUrl = _uri.toString();
 
 const kTodaysPostsEndpoint = '/posts';
+const kCommentsEndpoint = '/comments';

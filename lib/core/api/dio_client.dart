@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:product_hunt/core/api/endpoints.dart';
+import 'package:product_hunt/core/credentials.dart';
 import 'package:product_hunt/core/resources/strings.dart';
 import 'package:product_hunt/core/utils/logger.dart';
 
@@ -28,7 +29,8 @@ class DioClient {
     )..interceptors.add(ApiLoggerInterceptor());
   }
 
-  Map<String, String> get headers => <String, String>{};
+  Map<String, String> get headers =>
+      <String, String>{'Authorization': 'Bearer $kAccessToken'};
 
   void refresh() => _initialize();
 

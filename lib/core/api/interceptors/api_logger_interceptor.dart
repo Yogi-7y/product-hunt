@@ -18,7 +18,6 @@ class ApiLoggerInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     _logger
         .i('REQUEST ${options.method.toUpperCase()} ${options.uri.toString()}');
-    _logger.i('HEADERS x-sessionid: ${options.headers['x-sessionid']}');
     _logger.i('${options.data}');
 
     return handler.next(options);

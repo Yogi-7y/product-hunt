@@ -2,22 +2,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:product_hunt/core/api/api_response.dart';
-import 'package:product_hunt/screens/home/datasources/abstract/local_data_source.dart';
-import 'package:product_hunt/screens/home/datasources/abstract/remote_data_source.dart';
+import 'package:product_hunt/screens/home/datasources/local_data_source.dart';
+import 'package:product_hunt/screens/home/datasources/remote_data_source.dart';
 import 'package:product_hunt/screens/home/models/post_model.dart';
-import 'package:product_hunt/screens/home/repository/products_repository.dart';
+import 'package:product_hunt/screens/home/repository/fetch_posts_repository.dart';
 import 'package:product_hunt/service/network_connectivity.dart';
 
 import 'products_repository_test.mocks.dart';
 
-@GenerateMocks([NetworkConnectivity, RemoteDataSource, LocalDataSource])
+@GenerateMocks(
+    [NetworkConnectivity, RemoteDataSourceContract, LocalDataSourceContract])
 void main() {
   final _successTodaysPostModel =
       ApiResponse<List<PostModel>>.success(data: const <PostModel>[]);
 
   final _failTodaysPostModel = ApiResponse<List<PostModel>>.error('');
 
-  late PostsRepository _postsRepository;
+  late FetchPostsRepository _fetchPostsRepository;
   late MockRemoteDataSource _mockRemoteDatasource;
   late MockLocalDataSource _mockLocalDatasource;
   final MockNetworkConnectivity _mockNetworkConnectivity =
@@ -27,7 +28,7 @@ void main() {
     _mockRemoteDatasource = MockRemoteDataSource();
     _mockLocalDatasource = MockLocalDataSource();
 
-    _postsRepository = PostsRepository(
+    _fetchPostsRepository = FetchPostsRepository(
       remoteDataSource: _mockRemoteDatasource,
       localDataSource: _mockLocalDatasource,
       connectivity: _mockNetworkConnectivity,
@@ -44,7 +45,7 @@ void main() {
             ApiResponse.success(data: const <PostModel>[]),
       );
 
-      final result = await _postsRepository.getTodaysPosts();
+      final result = await _fetchPostsRepository.getTodaysPosts();
 
       expect(result, equals(_successTodaysPostModel));
     });
@@ -55,7 +56,7 @@ void main() {
             ApiResponse.success(data: const <PostModel>[]),
       );
 
-      final result = await _postsRepository.getTodaysPosts();
+      final result = await _fetchPostsRepository.getTodaysPosts();
 
       verify(_mockLocalDatasource.cacheTodaysPosts(result.data));
     });
@@ -65,7 +66,7 @@ void main() {
         (realInvocation) async => ApiResponse.error(''),
       );
 
-      final result = await _postsRepository.getTodaysPosts();
+      final result = await _fetchPostsRepository.getTodaysPosts();
 
       verify(_mockRemoteDatasource.getTodaysPosts());
       verifyZeroInteractions(_mockLocalDatasource);
@@ -81,7 +82,7 @@ void main() {
       when(_mockLocalDatasource.getTodaysPosts())
           .thenAnswer((realInvocation) async => _successTodaysPostModel);
 
-      final result = await _postsRepository.getTodaysPosts();
+      final result = await _fetchPostsRepository.getTodaysPosts();
 
       verifyZeroInteractions(_mockRemoteDatasource);
       verify(_mockLocalDatasource.getTodaysPosts());
@@ -92,7 +93,7 @@ void main() {
       when(_mockLocalDatasource.getTodaysPosts())
           .thenAnswer((realInvocation) async => _failTodaysPostModel);
 
-      final result = await _postsRepository.getTodaysPosts();
+      final result = await _fetchPostsRepository.getTodaysPosts();
 
       verifyZeroInteractions(_mockRemoteDatasource);
       verify(_mockLocalDatasource.getTodaysPosts());

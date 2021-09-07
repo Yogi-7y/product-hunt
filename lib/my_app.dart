@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:product_hunt/core/configs/size_config.dart';
-import 'package:product_hunt/screens/home/home_screen.dart';
+import 'package:product_hunt/core/resources/colors.dart';
+import 'package:product_hunt/screens/splash/splash_screen.dart';
 
 import 'core/routes/route_generator.dart';
 
@@ -17,7 +18,14 @@ class MyApp extends StatelessWidget {
             title: 'Haptik Assignment',
             debugShowCheckedModeBanner: false,
             onGenerateRoute: RouteGenerator.instance.generateRoute,
-            initialRoute: HomeScreen.id,
+            initialRoute: SplashScreen.id,
+            theme: ThemeData(
+              backgroundColor: kWhiteColor,
+              appBarTheme: const AppBarTheme(
+                color: kWhiteColor,
+                elevation: 0.0,
+              ),
+            ),
           );
         },
       ),

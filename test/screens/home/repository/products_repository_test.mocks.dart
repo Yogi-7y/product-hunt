@@ -6,9 +6,9 @@ import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:product_hunt/core/api/api_response.dart' as _i2;
-import 'package:product_hunt/screens/home/datasources/abstract/local_data_source.dart'
+import 'package:product_hunt/screens/home/datasources/local_data_source.dart'
     as _i7;
-import 'package:product_hunt/screens/home/datasources/abstract/remote_data_source.dart'
+import 'package:product_hunt/screens/home/datasources/remote_data_source.dart'
     as _i5;
 import 'package:product_hunt/screens/home/models/post_model.dart' as _i6;
 import 'package:product_hunt/service/network_connectivity.dart' as _i3;
@@ -43,7 +43,8 @@ class MockNetworkConnectivity extends _i1.Mock
 /// A class which mocks [RemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRemoteDataSource extends _i1.Mock implements _i5.RemoteDataSource {
+class MockRemoteDataSource extends _i1.Mock
+    implements _i5.RemoteDataSourceContract {
   MockRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -61,7 +62,8 @@ class MockRemoteDataSource extends _i1.Mock implements _i5.RemoteDataSource {
 /// A class which mocks [LocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalDataSource extends _i1.Mock implements _i7.LocalDataSource {
+class MockLocalDataSource extends _i1.Mock
+    implements _i7.LocalDataSourceContract {
   MockLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
