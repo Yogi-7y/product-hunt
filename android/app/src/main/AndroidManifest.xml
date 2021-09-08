@@ -14,7 +14,7 @@
 
 
    <application
-        android:label="product_hunt"
+        android:label="Product Hunt"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
