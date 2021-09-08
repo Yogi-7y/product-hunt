@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:product_hunt/core/resources/strings.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
 
 import '../../core/configs/duration.dart';
 import '../../core/configs/size_config.dart';

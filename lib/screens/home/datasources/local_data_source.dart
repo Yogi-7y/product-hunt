@@ -6,7 +6,7 @@ import 'package:product_hunt/service/local_state.dart';
 abstract class LocalDataSourceContract {
   Future<ApiResponse<List<PostModel>>> getTodaysPosts();
 
-  Future<void> cacheTodaysPosts(List<PostModel> posts) async {}
+  Future<void> cacheTodaysPosts(List<PostModel> posts);
 }
 
 class LocalDataSource implements LocalDataSourceContract {
