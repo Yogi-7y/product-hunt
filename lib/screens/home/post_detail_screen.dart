@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:product_hunt/core/configs/size_config.dart';
 import 'package:product_hunt/core/resources/colors.dart';
+import 'package:product_hunt/core/utils/show_message.dart';
 import 'package:product_hunt/screens/home/models/comment_model.dart';
 import 'package:product_hunt/screens/home/models/post_model.dart';
 import 'package:product_hunt/screens/home/providers/post_comments_provider.dart';
@@ -9,6 +10,7 @@ import 'package:product_hunt/screens/home/widgets/comment.dart';
 import 'package:product_hunt/screens/home/widgets/topic_chips.dart';
 import 'package:product_hunt/shared/custom_image.dart';
 import 'package:product_hunt/shared/empty_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/extensions/datetime_extension.dart';
 
@@ -44,7 +46,35 @@ class PostDetailScreen extends StatelessWidget {
         ),
         child: PostDetailsAppBar(postModel: postModel),
       ),
+      floatingActionButton: SourceFloatingActionButton(postModel: postModel),
     );
+  }
+}
+
+class SourceFloatingActionButton extends StatelessWidget {
+  final PostModel postModel;
+
+  const SourceFloatingActionButton({
+    Key? key,
+    required this.postModel,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () => _goToSource(context, postModel.redirectUrl),
+      backgroundColor: kMattBlackColor,
+      child: const Icon(Icons.public),
+    );
+  }
+
+  Future<void> _goToSource(BuildContext context, String url) async {
+    if (!await canLaunch(url)) {
+      ShowMessage.showSnacBar(context, 'Failed to launch');
+      return;
+    }
+
+    launch(url);
   }
 }
 
