@@ -1,7 +1,7 @@
-import 'package:product_hunt/core/api/api_response.dart';
-import 'package:product_hunt/core/api/dio_client.dart';
-import 'package:product_hunt/core/api/endpoints.dart';
-import 'package:product_hunt/screens/home/models/comment_model.dart';
+import '../../../core/api/api_response.dart';
+import '../../../core/api/dio_client.dart';
+import '../../../core/api/endpoints.dart';
+import '../models/comment_model.dart';
 
 class PostCommentRepository {
   final _className = 'PostCommentRepository';

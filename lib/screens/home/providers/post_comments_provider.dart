@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:product_hunt/core/api/api_response.dart';
-import 'package:product_hunt/core/utils/logger.dart';
-import 'package:product_hunt/core/utils/show_message.dart';
-import 'package:product_hunt/screens/home/models/comment_model.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
-import 'package:product_hunt/screens/home/repository/post_repository.dart';
+import '../../../core/api/api_response.dart';
+import '../../../core/utils/logger.dart';
+import '../models/comment_model.dart';
+import '../models/post_model.dart';
+import '../repository/post_repository.dart';
 
 final _log = getLogger('PostCommentsProvider');
 

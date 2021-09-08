@@ -21,6 +21,7 @@ import 'package:product_hunt/service/network_connectivity.dart' as _i3;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
+// ignore: camel_case_types
 class _FakeCustomResponse_0<T> extends _i1.Fake implements _i2.ApiResponse<T> {}
 
 /// A class which mocks [NetworkConnectivity].

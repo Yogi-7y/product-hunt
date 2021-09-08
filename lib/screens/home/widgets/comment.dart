@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:product_hunt/core/configs/size_config.dart';
-import 'package:product_hunt/core/resources/colors.dart';
-import 'package:product_hunt/screens/home/models/comment_model.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
-import 'package:product_hunt/screens/home/providers/post_comments_provider.dart';
-import 'package:product_hunt/shared/empty_widget.dart';
+import '../../../core/configs/size_config.dart';
+import '../../../core/resources/colors.dart';
+import '../models/comment_model.dart';
+import '../models/post_model.dart';
+import '../providers/post_comments_provider.dart';
+import '../../../shared/empty_widget.dart';
 
 class CommentsProgressIndicator extends ConsumerWidget {
   const CommentsProgressIndicator({

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:product_hunt/core/api/api_response.dart';
-import 'package:product_hunt/core/utils/logger.dart';
-import 'package:product_hunt/screens/home/datasources/local_data_source.dart';
-import 'package:product_hunt/screens/home/datasources/remote_data_source.dart';
-import 'package:product_hunt/screens/home/repository/fetch_posts_repository.dart';
-import 'package:product_hunt/service/network_connectivity.dart';
+import '../../../core/api/api_response.dart';
+import '../../../core/utils/logger.dart';
+import '../datasources/local_data_source.dart';
+import '../datasources/remote_data_source.dart';
+import '../repository/fetch_posts_repository.dart';
+import '../../../service/network_connectivity.dart';
 
 import '../models/post_model.dart';
 

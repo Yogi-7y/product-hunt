@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:product_hunt/core/api/endpoints.dart';
-import 'package:product_hunt/core/credentials.dart';
-import 'package:product_hunt/core/resources/strings.dart';
-import 'package:product_hunt/core/utils/logger.dart';
+import 'endpoints.dart';
+import '../credentials.dart';
+import '../resources/strings.dart';
+import '../utils/logger.dart';
 
 import 'api_response.dart';
 import 'interceptors/api_logger_interceptor.dart';

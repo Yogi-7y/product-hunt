@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_hunt/core/resources/colors.dart';
+import '../core/resources/colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 class LoadingWrapper extends StatelessWidget {

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 
-import 'package:product_hunt/models/user_model.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
+import '../../../models/user_model.dart';
+import 'post_model.dart';
 
 @immutable
 class CommentModel {

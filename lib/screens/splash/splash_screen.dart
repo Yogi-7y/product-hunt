@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:product_hunt/core/app_startup.dart';
-import 'package:product_hunt/screens/home/home_screen.dart';
+import '../../core/app_startup.dart';
+import '../home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String id = 'splash_screen';

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:product_hunt/core/resources/strings.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
-import 'package:product_hunt/screens/home/providers/post_provider.dart';
-import 'package:product_hunt/shared/post_tile.dart';
+import '../models/post_model.dart';
+import '../providers/post_provider.dart';
+import '../../../shared/post_tile.dart';
 
 class PostSearchDelegate extends SearchDelegate<PostModel?> {
   final List<PostModel> posts;

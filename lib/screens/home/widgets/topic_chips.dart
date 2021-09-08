@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:product_hunt/core/resources/colors.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
+import '../../../core/resources/colors.dart';
+import '../models/post_model.dart';
 
 class Topics extends StatelessWidget {
   const Topics({

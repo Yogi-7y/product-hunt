@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:product_hunt/screens/home/home_screen.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
-import 'package:product_hunt/screens/home/post_detail_screen.dart';
-import 'package:product_hunt/screens/splash/splash_screen.dart';
+import '../../screens/home/home_screen.dart';
+import '../../screens/home/models/post_model.dart';
+import '../../screens/home/post_detail_screen.dart';
+import '../../screens/splash/splash_screen.dart';
 
 class RouteGenerator {
   RouteGenerator._();

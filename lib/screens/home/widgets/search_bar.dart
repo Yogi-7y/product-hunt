@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:product_hunt/core/configs/size_config.dart';
-import 'package:product_hunt/core/resources/colors.dart';
-import 'package:product_hunt/screens/home/providers/fetch_products_state_notifier.dart';
-import 'package:product_hunt/screens/home/widgets/post_search_delegate.dart';
-import 'package:product_hunt/shared/empty_widget.dart';
+import '../../../core/configs/size_config.dart';
+import '../../../core/resources/colors.dart';
+import '../providers/fetch_products_state_notifier.dart';
+import 'post_search_delegate.dart';
+import '../../../shared/empty_widget.dart';
 
 enum DaysAgo {
   today,

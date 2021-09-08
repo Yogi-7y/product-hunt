@@ -1,6 +1,9 @@
 include: package:lint/analysis_options.yaml
 
 analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.mocks.dart"
   language:
     strict-inference: true
     strict-raw-types: true

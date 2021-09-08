@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:product_hunt/models/user_model.dart';
-import 'package:product_hunt/screens/home/models/screenshot_model.dart';
-import 'package:product_hunt/screens/home/models/thumbnail_model.dart';
-import 'package:product_hunt/screens/home/models/topic_model.dart';
+import '../../../models/user_model.dart';
+import 'screenshot_model.dart';
+import 'thumbnail_model.dart';
+import 'topic_model.dart';
 
 @immutable
 class PostModel {

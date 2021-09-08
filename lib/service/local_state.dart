@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:product_hunt/core/api/dio_client.dart';
+import '../core/api/dio_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/utils/logger.dart';

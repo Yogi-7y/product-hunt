@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:product_hunt/core/configs/size_config.dart';
-import 'package:product_hunt/core/resources/colors.dart';
-import 'package:product_hunt/core/utils/show_message.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
-import 'package:product_hunt/screens/home/providers/post_comments_provider.dart';
-import 'package:product_hunt/screens/home/widgets/comment.dart';
-import 'package:product_hunt/screens/home/widgets/topic_chips.dart';
-import 'package:product_hunt/shared/custom_image.dart';
-import 'package:product_hunt/shared/empty_widget.dart';
+import '../../core/configs/size_config.dart';
+import '../../core/resources/colors.dart';
+import '../../core/utils/show_message.dart';
+import 'models/post_model.dart';
+import 'providers/post_comments_provider.dart';
+import 'widgets/comment.dart';
+import 'widgets/topic_chips.dart';
+import '../../shared/custom_image.dart';
+import '../../shared/empty_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/extensions/datetime_extension.dart';

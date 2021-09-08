@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:product_hunt/core/resources/colors.dart';
-import 'package:product_hunt/core/resources/strings.dart';
-import 'package:product_hunt/shared/loading_wrapper.dart';
+import '../core/resources/colors.dart';
+import '../core/resources/strings.dart';
+import 'loading_wrapper.dart';
 
 class CustomCachedImage extends StatelessWidget {
   final String imageUrl;

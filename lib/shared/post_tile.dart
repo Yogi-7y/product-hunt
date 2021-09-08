@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:product_hunt/core/configs/size_config.dart';
-import 'package:product_hunt/core/resources/colors.dart';
-import 'package:product_hunt/screens/home/post_detail_screen.dart';
-import 'package:product_hunt/screens/home/providers/post_provider.dart';
+import '../core/configs/size_config.dart';
+import '../core/resources/colors.dart';
+import '../screens/home/post_detail_screen.dart';
+import '../screens/home/providers/post_provider.dart';
 
 import '../core/extensions/datetime_extension.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:product_hunt/core/resources/colors.dart';
+import '../resources/colors.dart';
 
 enum MessageType {
   info,

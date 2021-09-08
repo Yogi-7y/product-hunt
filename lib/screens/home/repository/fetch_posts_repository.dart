@@ -1,9 +1,9 @@
-import 'package:product_hunt/core/api/api_response.dart';
-import 'package:product_hunt/core/resources/strings.dart';
-import 'package:product_hunt/screens/home/datasources/local_data_source.dart';
-import 'package:product_hunt/screens/home/datasources/remote_data_source.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
-import 'package:product_hunt/service/network_connectivity.dart';
+import '../../../core/api/api_response.dart';
+import '../../../core/resources/strings.dart';
+import '../datasources/local_data_source.dart';
+import '../datasources/remote_data_source.dart';
+import '../models/post_model.dart';
+import '../../../service/network_connectivity.dart';
 
 abstract class PostsRepositoryContract {
   Future<ApiResponse<List<PostModel>>> getTodaysPosts();

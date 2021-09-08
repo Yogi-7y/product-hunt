@@ -1,5 +1,5 @@
-import 'package:product_hunt/core/api/dio_client.dart';
-import 'package:product_hunt/service/local_state.dart';
+import '../service/local_state.dart';
+import 'api/dio_client.dart';
 
 abstract class AppStartupLogic {
   static Future<void> initialize() async {

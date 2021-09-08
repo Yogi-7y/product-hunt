@@ -1,7 +1,8 @@
-import 'package:product_hunt/core/api/api_response.dart';
-import 'package:product_hunt/core/resources/strings.dart';
-import 'package:product_hunt/screens/home/models/post_model.dart';
-import 'package:product_hunt/service/local_state.dart';
+import '../../../core/api/api_response.dart';
+import '../../../core/api/dio_client.dart';
+import '../../../core/resources/strings.dart';
+import '../models/post_model.dart';
+import '../../../service/local_state.dart';
 
 abstract class LocalDataSourceContract {
   Future<ApiResponse<List<PostModel>>> getTodaysPosts();
@@ -10,6 +11,8 @@ abstract class LocalDataSourceContract {
 }
 
 class LocalDataSource implements LocalDataSourceContract {
+  final _className = 'LocalDataSource';
+
   @override
   Future<void> cacheTodaysPosts(List<PostModel> posts) async =>
       LocalState.instance.storeObject(kLocalPostsKey,
@@ -17,11 +20,16 @@ class LocalDataSource implements LocalDataSourceContract {
 
   @override
   Future<ApiResponse<List<PostModel>>> getTodaysPosts() async {
-    final result = List<Map<String, dynamic>>.from(
-            LocalState.instance.getObject(kLocalPostsKey) as Iterable)
-        .map((e) => PostModel.fromMap(e))
-        .toList();
+    try {
+      final result = List<Map<String, dynamic>>.from(
+              LocalState.instance.getObject(kLocalPostsKey) as Iterable)
+          .map((e) => PostModel.fromMap(e))
+          .toList();
 
-    return ApiResponse.success(data: result, message: kPoorConnectivityMessage);
+      return ApiResponse.success(
+          data: result, message: kPoorConnectivityMessage);
+    } catch (e) {
+      return DioClient.instance.handleExceptions(e, _className);
+    }
   }
 }

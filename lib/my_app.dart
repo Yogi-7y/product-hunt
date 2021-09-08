@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:product_hunt/core/configs/size_config.dart';
-import 'package:product_hunt/core/resources/colors.dart';
-import 'package:product_hunt/screens/splash/splash_screen.dart';
+import 'core/configs/size_config.dart';
+import 'core/resources/colors.dart';
+import 'screens/splash/splash_screen.dart';
 
 import 'core/routes/route_generator.dart';
 
