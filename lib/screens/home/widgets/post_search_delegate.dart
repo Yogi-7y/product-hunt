@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:product_hunt/core/resources/strings.dart';
 import 'package:product_hunt/screens/home/models/post_model.dart';
 import 'package:product_hunt/screens/home/providers/post_provider.dart';
 import 'package:product_hunt/shared/post_tile.dart';
@@ -27,33 +28,15 @@ class PostSearchDelegate extends SearchDelegate<PostModel?> {
   }
 
   @override
-  Widget buildResults(BuildContext context) {
-    final List<PostModel> _suggestions = posts
-        .where(
-          (element) =>
-              element.name.toLowerCase().contains(query) ||
-              element.tagline.toLowerCase().contains(query),
-        )
-        .toList();
-
-    return ListView.builder(
-      itemCount: _suggestions.length,
-      itemBuilder: (BuildContext context, int index) {
-        return ProviderScope(
-          overrides: [
-            postProvider.overrideWithValue(_suggestions[index]),
-          ],
-          child: const PostTile(),
-        );
-      },
-    );
-  }
+  Widget buildResults(BuildContext context) => _buildSuggestions();
 
   @override
   String get query => super.query.toLowerCase();
 
   @override
-  Widget buildSuggestions(BuildContext context) {
+  Widget buildSuggestions(BuildContext context) => _buildSuggestions();
+
+  Widget _buildSuggestions() {
     final List<PostModel> _suggestions = posts
         .where(
           (element) =>
@@ -68,6 +51,7 @@ class PostSearchDelegate extends SearchDelegate<PostModel?> {
         return ProviderScope(
           overrides: [
             postProvider.overrideWithValue(_suggestions[index]),
+            isFirstPostProvider.overrideWithValue(false),
           ],
           child: const PostTile(),
         );
