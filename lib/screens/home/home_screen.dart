@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:product_hunt/core/resources/strings.dart';
+import 'package:product_hunt/screens/home/models/post_model.dart';
 
 import '../../core/configs/duration.dart';
 import '../../core/configs/size_config.dart';
@@ -28,23 +30,9 @@ class HomeScreen extends StatelessWidget {
               final response = ref.watch(fetchPostsStateNotifierProvider);
 
               return response.when(
-                data: (posts) => ListView.separated(
-                  controller: ref
-                      .read(fetchPostsStateNotifierProvider.notifier)
-                      .scrollController,
-                  itemCount: posts.length,
-                  separatorBuilder: (context, index) =>
-                      const ListItemSeparator(),
-                  itemBuilder: (BuildContext context, int index) =>
-                      ProviderScope(
-                    overrides: [postProvider.overrideWithValue(posts[index])],
-                    child: const PostTile(),
-                  ),
-                ),
-                loading: () => const HomeListLoading(),
-                error: (error, _) => const Center(
-                  child: Text(kSomethingWentWrongMessage),
-                ),
+                data: (posts) => PostList(posts: posts),
+                loading: () => const PostsLoading(),
+                error: (error, _) => const PostError(),
               );
             },
           ),
@@ -68,25 +56,31 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class ListItemSeparator extends StatelessWidget {
-  const ListItemSeparator({
-    Key? key,
-  }) : super(key: key);
+class PostList extends ConsumerWidget {
+  final List<PostModel> posts;
+
+  const PostList({required this.posts});
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Divider(
-        color: kSilverChalice.withOpacity(.4),
-        height: 0,
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListView.separated(
+      controller:
+          ref.read(fetchPostsStateNotifierProvider.notifier).scrollController,
+      itemCount: posts.length,
+      separatorBuilder: (context, index) => const ListItemSeparator(),
+      itemBuilder: (BuildContext context, int index) => ProviderScope(
+        overrides: [
+          postProvider.overrideWithValue(posts[index]),
+          isFirstPostProvider.overrideWithValue(index == 0),
+        ],
+        child: const PostTile(),
       ),
     );
   }
 }
 
-class HomeListLoading extends StatelessWidget {
-  const HomeListLoading({
+class PostsLoading extends StatelessWidget {
+  const PostsLoading({
     Key? key,
   }) : super(key: key);
 
@@ -135,6 +129,36 @@ class HomeListLoading extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class PostError extends StatelessWidget {
+  const PostError({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(kSomethingWentWrongMessage),
+    );
+  }
+}
+
+class ListItemSeparator extends StatelessWidget {
+  const ListItemSeparator({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Divider(
+        color: kSilverChalice.withOpacity(.4),
+        height: 0,
       ),
     );
   }

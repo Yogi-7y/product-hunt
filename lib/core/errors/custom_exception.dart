@@ -3,3 +3,7 @@ class CustomException implements Exception {
 
   CustomException({this.message});
 }
+
+class NoDataException extends CustomException {
+  NoDataException({String? message}) : super(message: message);
+}

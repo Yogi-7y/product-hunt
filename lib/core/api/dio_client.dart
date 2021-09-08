@@ -24,7 +24,6 @@ class DioClient {
       BaseOptions(
         baseUrl: kBasrUrl,
         headers: headers,
-        contentType: Headers.formUrlEncodedContentType,
       ),
     )..interceptors.add(ApiLoggerInterceptor());
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:product_hunt/core/configs/size_config.dart';
 import 'package:product_hunt/core/resources/colors.dart';
 import 'package:product_hunt/screens/home/post_detail_screen.dart';
 import 'package:product_hunt/screens/home/providers/post_provider.dart';
@@ -18,7 +19,12 @@ class PostTile extends StatelessWidget {
         final post = ref.watch(postProvider);
 
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          padding: const EdgeInsets.symmetric(vertical: 10.0) +
+              EdgeInsets.only(
+                top: ref.read(isFirstPostProvider)
+                    ? SizeConfig.instance.blockHeight * 12
+                    : 0.0,
+              ),
           child: ListTile(
             onTap: () => Navigator.of(context)
                 .pushNamed(PostDetailScreen.id, arguments: post),
