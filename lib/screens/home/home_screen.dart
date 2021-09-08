@@ -79,14 +79,16 @@ class PostList extends ConsumerWidget {
   }
 }
 
-class PostsLoading extends StatelessWidget {
+class PostsLoading extends ConsumerWidget {
   const PostsLoading({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView(
+      controller:
+          ref.read(fetchPostsStateNotifierProvider.notifier).scrollController,
       children: List.generate(
         16,
         (index) => Padding(

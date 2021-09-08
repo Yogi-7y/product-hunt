@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:product_hunt/core/configs/size_config.dart';
 import 'package:product_hunt/core/resources/colors.dart';
 import 'package:product_hunt/core/utils/show_message.dart';
-import 'package:product_hunt/screens/home/models/comment_model.dart';
 import 'package:product_hunt/screens/home/models/post_model.dart';
 import 'package:product_hunt/screens/home/providers/post_comments_provider.dart';
 import 'package:product_hunt/screens/home/widgets/comment.dart';
